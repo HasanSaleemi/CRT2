@@ -1,5 +1,6 @@
 package assignment5;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Critter {
@@ -11,7 +12,7 @@ public abstract class Critter {
 		DIAMOND,
 		STAR
 	}
-	
+
 	/* the default color is white, which I hope makes critters invisible by default
 	 * If you change the background color of your View component, then update the default
 	 * color to be the same as you background 
@@ -35,6 +36,9 @@ public abstract class Critter {
 	private static String myPackage;
 	private	static List<Critter> population = new java.util.ArrayList<Critter>();
 	private static List<Critter> babies = new java.util.ArrayList<Critter>();
+
+	private static ArrayList<ArrayList<ArrayList<Critter>>> grid;
+	private boolean hasMoved = false;
 
 	// Gets the package name.  This assumes that Critter and its subclasses are all in the same package.
 	static {
