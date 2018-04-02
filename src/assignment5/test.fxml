@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment5.Control">
+   <children>
+      <ScrollPane fx:id="mainScroll" hbarPolicy="NEVER" layoutX="20.0" layoutY="20.0" pannable="true" prefHeight="403.0" prefWidth="403.0" vbarPolicy="NEVER" />
+      <TabPane layoutX="443.0" layoutY="20.0" prefHeight="403.0" prefWidth="403.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab closable="false" text="Control">
+               <content>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Group layoutX="14.0" layoutY="40.0">
+                           <children>
+                              <ChoiceBox fx:id="critterAddSelect" prefHeight="26.0" prefWidth="128.0" />
+                              <TextField fx:id="critterAddNum" layoutX="138.0" prefHeight="26.0" prefWidth="64.0" text="1" />
+                              <Button fx:id="critterAdd" layoutX="247.0" mnemonicParsing="false" prefWidth="128.0" text="MAKE" />
+                              <Label layoutY="-20.0" text="Make Critters" />
+                           </children>
+                        </Group>
+                        <Group layoutX="14.0" layoutY="97.0">
+                           <children>
+                              <TextField fx:id="setSeedNum" prefHeight="26.0" prefWidth="202.0" />
+                              <Button fx:id="setSeed" layoutX="247.0" mnemonicParsing="false" prefWidth="128.0" text="SET" />
+                              <Label layoutY="-20.0" text="Seed" />
+                           </children>
+                        </Group>
+                        <Group layoutX="14.0" layoutY="237.0">
+                           <children>
+                              <ScrollPane prefHeight="97.0" prefWidth="375.0">
+                                 <content>
+                                    <VBox fx:id="statsShow" spacing="5.0" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </ScrollPane>
+                              <Label layoutY="-20.0" text="Toggle Stats" />
+                           </children>
+                        </Group>
+                        <Group layoutX="14.0" layoutY="154.0">
+                           <children>
+                              <TextField fx:id="stepNum" prefHeight="26.0" prefWidth="64.0" text="1" />
+                              <Button fx:id="step" layoutX="247.0" mnemonicParsing="false" prefWidth="128.0" text="STEP" />
+                              <Label layoutY="-20.0" text="Step" />
+                              <CheckBox fx:id="stepCont" layoutX="105.0" layoutY="4.0" mnemonicParsing="false" onMouseClicked="#ToggleCont" text="Continuous" />
+                              <Label layoutX="75.0" layoutY="5.0" text="OR" />
+                              <Slider fx:id="stepSpeed" blockIncrement="1.0" disable="true" layoutY="32.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" prefHeight="25.0" prefWidth="375.0" showTickMarks="true" snapToTicks="true" value="3.0" />
+                              <Button fx:id="stepPlay" layoutX="247.0" mnemonicParsing="false" prefWidth="128.0" text="PLAY (1.0x)" visible="false" />
+                           </children>
+                        </Group>
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+          <Tab closable="false" text="Stats">
+               <content>
+                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0">
+                     <content>
+                        <Label wrapText="true" />
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Label fx:id="sizeDisplay" layoutX="20.0" layoutY="5.0" text="0 x 0" />
+   </children>
+</Pane>
