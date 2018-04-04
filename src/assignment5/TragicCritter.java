@@ -8,10 +8,6 @@ public class TragicCritter extends Critter {
 	public String toString() { return "T"; }
 
 	public TragicCritter() {
-		Params.look_energy_cost = 0;
-		Params.walk_energy_cost = 0;
-		Params.run_energy_cost = 0;
-		Params.refresh_algae_count = 0;
 	}
 
 	public boolean fight(String not_used) { return true; }
@@ -34,14 +30,14 @@ public class TragicCritter extends Critter {
 		}
 	}
 
-	/*public static String runStats(java.util.List<Critter> avoidingCritters) {
+	public static String runStats(java.util.List<Critter> avoidingCritters) {
 		if(avoidingCritters.size() >= 2) {
 			return "Still can't get to each other";
 		}
 		else {
 			return "Collided, sadly";
 		}
-	}*/
+	}
 
 	@Override
 	public CritterShape viewShape() { return CritterShape.STAR; }

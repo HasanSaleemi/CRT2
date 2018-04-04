@@ -13,10 +13,12 @@ public class Main extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
 		primaryStage.setTitle("Critters Simulator");
 		primaryStage.setScene(new Scene(root, 866, 443));
+		primaryStage.setResizable(false);
 		primaryStage.show();
 	}
 
 	public static void main(String[] args) {
+		Critter.clearWorld();
 		launch(args);
 	}
 }

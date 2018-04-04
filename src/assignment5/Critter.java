@@ -25,29 +25,53 @@ public abstract class Critter {
 	 * shape, at least, that's the intent. You can edit these default methods however you 
 	 * need to, but please preserve that intent as you implement them. 
 	 */
-	public javafx.scene.paint.Color viewColor() { 
-		return javafx.scene.paint.Color.WHITE; 
+	public javafx.scene.paint.Color viewColor() {
+		return javafx.scene.paint.Color.BLACK;
 	}
-	
 	public javafx.scene.paint.Color viewOutlineColor() { return viewColor(); }
 	public javafx.scene.paint.Color viewFillColor() { return viewColor(); }
 	
 	public abstract CritterShape viewShape(); 
 	
 	private static String myPackage;
-	private	static List<Critter> population = new java.util.ArrayList<Critter>();
+	public	static List<Critter> population = new java.util.ArrayList<Critter>();
 	private static List<Critter> babies = new java.util.ArrayList<Critter>();
 
 	private static ArrayList<ArrayList<ArrayList<Critter>>> grid;
+	private static ArrayList<ArrayList<ArrayList<Critter>>> oldGrid;
 	private boolean hasMoved = false;
+
+	private static int stage = 0;
 
 	// Gets the package name.  This assumes that Critter and its subclasses are all in the same package.
 	static {
 		myPackage = Critter.class.getPackage().toString().split(" ")[1];
 	}
-	
-	protected final String look(int direction, boolean steps) { // false = walk (1 step) | true = run (2 steps)
-		return "";
+
+	protected final String look(int direction, boolean steps) {
+		int x = this.x_coord;
+		int y = this.y_coord;
+		int numSteps = steps ? 2 : 1;
+
+		energy-=Params.look_energy_cost;
+
+		if(direction == 0 || direction == 1 || direction == 7)  // right directions
+			x += numSteps;
+		else if(direction == 3 || direction == 4 || direction == 5)  // left directions
+			x -= numSteps;
+		if(direction == 1 || direction == 2 || direction == 3) // up directions
+			y -= numSteps;
+		else if(direction == 5 || direction == 6 || direction == 7)	// down directions
+			y += numSteps;
+
+		// correct coordinates
+		x = x - Math.floorDiv(x, Params.world_width)*Params.world_width;
+		y = y - Math.floorDiv(y, Params.world_height)*Params.world_height;
+
+		if(stage <= 1)
+			return !oldGrid.get(x).get(y).isEmpty() ? oldGrid.get(x).get(y).get(0).toString() : "";
+		else
+			return !grid.get(x).get(y).isEmpty() ? grid.get(x).get(y).get(0).toString() : "";
 	}
 	
 	/* rest is unchanged from Project 4 */
@@ -71,8 +95,8 @@ public abstract class Critter {
 	private int energy = 0;
 	protected int getEnergy() { return energy; }
 
-	private int x_coord;
-	private int y_coord;
+	public int x_coord;
+	public int y_coord;
 
 	/**
 	 * makes it easier to move in the grid, given a random direction N, NE, E, SE, S, SW, W, NW
@@ -258,8 +282,8 @@ public abstract class Critter {
 	 * all the different critters and prints out stats for each unique kind
 	 * @param critters List of all the critters in the word
 	 */
-	public static void runStats(List<Critter> critters) {
-		System.out.print("" + critters.size() + " critters as follows -- ");
+	public static String runStats(List<Critter> critters) {
+		String total = critters.size() + " critters as follows -- ";
 		java.util.Map<String, Integer> critter_count = new java.util.HashMap<String, Integer>();
 		for (Critter crit : critters) {
 			String crit_string = crit.toString();
@@ -272,10 +296,10 @@ public abstract class Critter {
 		}
 		String prefix = "";
 		for (String s : critter_count.keySet()) {
-			System.out.print(prefix + s + ":" + critter_count.get(s));
+			total = total + prefix + s + ":" + critter_count.get(s);
 			prefix = ", ";
 		}
-		System.out.println();
+		return total;
 	}
 
 	/* the TestCritter class allows some critters to "cheat". If you want to
@@ -340,13 +364,14 @@ public abstract class Critter {
 	 * empties out the list and populations for the critters and babies
 	 */
 	public static void clearWorld() {
-		grid = new ArrayList<ArrayList<ArrayList<Critter>>>();
+		grid = new ArrayList<>();
 		for(int x = 0; x < Params.world_width; x++){
 			grid.add(x, new ArrayList<>());
 			for(int y = 0; y < Params.world_height; y++){
 				grid.get(x).add(y, new ArrayList<>());
 			}
 		}
+		oldGrid = new ArrayList<>(grid);
 
 		population.clear();
 		babies.clear();
@@ -375,7 +400,10 @@ public abstract class Critter {
 	 * at the end of the time step, algae is always added
 	 */
 	public static void worldTimeStep() {
+		oldGrid = new ArrayList<>(grid);
+
 		// add babies
+		stage = 0;
 		for(Critter c: babies){
 			population.add(c);
 			grid.get(c.x_coord).get(c.y_coord).add(c);
@@ -383,6 +411,7 @@ public abstract class Critter {
 		babies.clear();
 
 		// do time step
+		stage = 1;
 		ArrayList<ArrayList<Integer>> coords = new ArrayList<>();
 
 		for(Critter c: population) {
@@ -395,7 +424,8 @@ public abstract class Critter {
 			coords.add(saveCoords);
 		}
 
-		// handle encounters
+		// handle encounters and take energy
+		stage = 2;
 		for(ArrayList<Integer> gridSpot: coords){
 			ArrayList<Critter> spot = grid.get(gridSpot.get(0)).get(gridSpot.get(1));
 			while(spot.size() > 1){
@@ -426,15 +456,13 @@ public abstract class Critter {
 				removeDeadCritters();
 			}
 		}
-
 		for(Critter c: population) {
 			c.energy-=Params.rest_energy_cost;
 		}
-
-		// remove ded
 		removeDeadCritters();
 
 		// create new algae
+		stage = 3;
 		for(int i = 0; i < Params.refresh_algae_count; i++) {
 			try {
 				makeCritter("Algae");
