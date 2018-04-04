@@ -12,6 +12,11 @@ import java.util.List;
 public class Critter4 extends Critter {
 
     @Override
+    public CritterShape viewShape() {
+        return CritterShape.CIRCLE;
+    }
+
+    @Override
     public String toString(){
         return "4";
     }
@@ -31,10 +36,9 @@ public class Critter4 extends Critter {
         return opponent.equals("@");
     }
 
-    public static void runStats(List<Critter> critters) {
-
-        String output = new String();
-        output.concat(critters.size() + " total Fleas    ");
+    public static String runStats(List<Critter> critters) {
+        String output = "";
+        output = output.concat(critters.size() + " total Fleas    ");
         return output;
     }
 }

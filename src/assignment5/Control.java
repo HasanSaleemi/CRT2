@@ -75,6 +75,8 @@ public class Control {
         grid = new GridPane();
         grid.setGridLinesVisible(true);
 
+        grid.setStyle("-fx-border-color: grey ; -fx-border-radius: 0 ; -fx-border-width: 4");
+
         mainScroll.setContent(grid);
 
         for(int x = 0; x < Params.world_width; x++){

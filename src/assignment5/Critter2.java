@@ -9,6 +9,11 @@ package assignment5;
 public class Critter2 extends Critter {
 
     @Override
+    public CritterShape viewShape() {
+        return CritterShape.DIAMOND;
+    }
+
+    @Override
     public String toString() { return "2"; }
 
     private int direction;
@@ -59,7 +64,7 @@ public class Critter2 extends Critter {
         direction = Critter.getRandomInt(8);
     }
     public static String runStats(java.util.List<Critter> Winstons) {
-        String output = new String();
+        String output = "";
 
         int happy = 0;
         int sad = 0;
@@ -82,10 +87,10 @@ public class Critter2 extends Critter {
 
         double total=happy+sad+angry;
 
-        output.concat("" + Winstons.size() + " total Winstons    ");
-        output.concat("" + happy*100 / (total) + "% happy   ");
-        output.concat("" + sad*100 / (total) + "% sad   ");
-        output.concat("" + angry*100 / (total) + "% angry   ");
+        output = output.concat("" + Winstons.size() + " total Winstons    ");
+        output = output.concat("" + happy*100 / (total) + "% happy   ");
+        output = output.concat("" + sad*100 / (total) + "% sad   ");
+        output =  output.concat("" + angry*100 / (total) + "% angry   ");
         return output;
     }
 }

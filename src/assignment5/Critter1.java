@@ -12,6 +12,11 @@ public class Critter1 extends Critter {
     private int direction;
 
     @Override
+    public CritterShape viewShape() {
+        return CritterShape.STAR;
+    }
+
+    @Override
     public String toString() {
         return "1";
     }
@@ -35,8 +40,8 @@ public class Critter1 extends Critter {
     }
 
     public static String runStats(java.util.List<Critter> rexes) {
-        String output = new String();
-        output.concat("" + rexes.size() + " total Rexes    ");
+        String output = "";
+        output = output.concat("" + rexes.size() + " total Rexes    ");
         return output;
     }
 

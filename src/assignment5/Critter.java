@@ -69,9 +69,9 @@ public abstract class Critter {
 		y = y - Math.floorDiv(y, Params.world_height)*Params.world_height;
 
 		if(stage <= 1)
-			return !oldGrid.get(x).get(y).isEmpty() ? oldGrid.get(x).get(y).get(0).toString() : "";
+			return !oldGrid.get(x).get(y).isEmpty() ? oldGrid.get(x).get(y).get(0).toString() : null;
 		else
-			return !grid.get(x).get(y).isEmpty() ? grid.get(x).get(y).get(0).toString() : "";
+			return !grid.get(x).get(y).isEmpty() ? grid.get(x).get(y).get(0).toString() : null;
 	}
 	
 	/* rest is unchanged from Project 4 */

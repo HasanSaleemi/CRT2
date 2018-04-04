@@ -10,6 +10,11 @@ package assignment5;
 public class Critter3 extends Critter {
 
     @Override
+    public CritterShape viewShape() {
+        return CritterShape.TRIANGLE;
+    }
+
+    @Override
     public String toString() {
         return "3";
     }
@@ -52,7 +57,7 @@ public class Critter3 extends Critter {
         }
     }
     public static String runStats(java.util.List<Critter> Teds) {
-        String output = new String();
+        String output = "";
         int spots = 0;
         int stripes = 0;
         int colors = 0;
@@ -73,10 +78,10 @@ public class Critter3 extends Critter {
         }
 
         double total=spots+stripes+colors;
-        output.concat("" + Teds.size() + " total Leos    ");
-        output.concat("" + spots*100 / (total) + "% spotted   ");
-        output.concat("" + stripes*100 / (total) + "% striped   ");
-        output.concat("" + colors * 100 / (total) + "% colored   ");
+        output = output.concat("" + Teds.size() + " total Leos    ");
+        output = output.concat("" + spots*100 / (total) + "% spotted   ");
+        output = output.concat("" + stripes*100 / (total) + "% striped   ");
+        output = output.concat("" + colors * 100 / (total) + "% colored   ");
         return output;
     }
 }
