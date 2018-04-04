@@ -7,7 +7,7 @@ package assignment5;
     - Slow to reproduce, cannot run.
  */
 
-public class Critter1 extends Critter {
+public class Rex extends Critter {
 
     private int direction;
 
@@ -21,7 +21,7 @@ public class Critter1 extends Critter {
         return "1";
     }
 
-    public Critter1() {
+    public Rex() {
         direction = Critter.getRandomInt(8);
     }
 
@@ -35,7 +35,7 @@ public class Critter1 extends Critter {
             walk(direction);
         }
         if (getEnergy() > 300)
-            reproduce(new Critter1(), Critter.getRandomInt(8));
+            reproduce(new Rex(), Critter.getRandomInt(8));
         direction = Critter.getRandomInt(8);
     }
 

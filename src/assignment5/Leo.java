@@ -7,7 +7,7 @@ package assignment5;
     - Movement is dependent on skin.
  */
 
-public class Critter3 extends Critter {
+public class Leo extends Critter {
 
     @Override
     public CritterShape viewShape() {
@@ -21,7 +21,7 @@ public class Critter3 extends Critter {
 
     private String skin;
 
-    public Critter3() {
+    public Leo() {
         switch (Critter.getRandomInt(3)){
             case 0:
                 skin = "spots";
@@ -40,7 +40,7 @@ public class Critter3 extends Critter {
     @Override
     public void doTimeStep() {
         if (getEnergy() > 150)
-            reproduce(new Critter3(), Critter.getRandomInt(8));
+            reproduce(new Leo(), Critter.getRandomInt(8));
 
         if(getEnergy() > 50){
             switch(skin) {
@@ -63,7 +63,7 @@ public class Critter3 extends Critter {
         int colors = 0;
 
         for (Object obj : Teds) {
-            Critter3 c = (Critter3) obj;
+            Leo c = (Leo) obj;
             switch (c.skin) {
                 case "spots":
                     spots++;

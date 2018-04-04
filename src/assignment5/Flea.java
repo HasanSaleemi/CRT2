@@ -9,7 +9,7 @@ package assignment5;
 
 import java.util.List;
 
-public class Critter4 extends Critter {
+public class Flea extends Critter {
 
     @Override
     public CritterShape viewShape() {
@@ -26,8 +26,8 @@ public class Critter4 extends Critter {
         walk(getRandomInt(8));
 
         if(getEnergy() > 100){
-            reproduce(new Critter4(), getRandomInt(8));
-            reproduce(new Critter4(), getRandomInt(8));
+            reproduce(new Flea(), getRandomInt(8));
+            reproduce(new Flea(), getRandomInt(8));
         }
     }
 

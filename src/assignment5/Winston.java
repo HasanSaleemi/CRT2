@@ -6,7 +6,7 @@ package assignment5;
     - Fights more and runs when moody, fights less and walks when happy.
  */
 
-public class Critter2 extends Critter {
+public class Winston extends Critter {
 
     @Override
     public CritterShape viewShape() {
@@ -19,7 +19,7 @@ public class Critter2 extends Critter {
     private int direction;
     private String mood;
 
-    public Critter2() {
+    public Winston() {
         direction = Critter.getRandomInt(8);
 
         switch (Critter.getRandomInt(3)){
@@ -48,7 +48,7 @@ public class Critter2 extends Critter {
     @Override
     public void doTimeStep() {
         if (getEnergy() > 160)
-            reproduce(new Critter2(), Critter.getRandomInt(8));
+            reproduce(new Winston(), Critter.getRandomInt(8));
 
         switch (mood) {
             case "angry":
@@ -71,7 +71,7 @@ public class Critter2 extends Critter {
         int angry = 0;
 
         for (Object obj : Winstons) {
-            Critter2 c = (Critter2) obj;
+            Winston c = (Winston) obj;
             switch (c.mood) {
                 case "happy":
                     happy++;
