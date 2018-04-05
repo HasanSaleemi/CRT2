@@ -65,10 +65,10 @@ public class Craig extends Critter {
 			total_left += c.genes[5] + c.genes[6] + c.genes[7];
 		}
 		s = s + "" + craigs.size() + " total Craigs    ";
-		s = s + "" + total_straight / (GENE_TOTAL * 0.01 * craigs.size()) + "% straight   ";
-		s = s + "" + total_back / (GENE_TOTAL * 0.01 * craigs.size()) + "% back   ";
-		s = s + "" + total_right / (GENE_TOTAL * 0.01 * craigs.size()) + "% right   ";
-		s = s + "" + total_left / (GENE_TOTAL * 0.01 * craigs.size()) + "% left   ";
+		s = s + "" + Math.floor(total_straight / (GENE_TOTAL * 0.01 * craigs.size())) + "% straight   ";
+		s = s + "" + Math.floor(total_back / (GENE_TOTAL * 0.01 * craigs.size())) + "% back   ";
+		s = s + "" + Math.floor(total_right / (GENE_TOTAL * 0.01 * craigs.size())) + "% right   ";
+		s = s + "" + Math.floor(total_left / (GENE_TOTAL * 0.01 * craigs.size())) + "% left   ";
 
 		return s;
 	}

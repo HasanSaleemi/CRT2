@@ -168,6 +168,15 @@ public class Control {
         sizeDisplay.setText(Params.world_width + " x " + Params.world_height + " (" + scale + "x)");
     }
 
+    private void BulkSelectStats(boolean val){
+        for(Node s : statsShow.getChildren()){
+            CheckBox get = (CheckBox)s;
+            get.setSelected(val);
+            statsIgnore.put(get.getText(), val ? null : true);
+        }
+        UpdateStats();
+    }
+
     public void UpdateStats(){
         statsLabel.setText("");
         for(String className : finalList){
@@ -183,14 +192,28 @@ public class Control {
             statsLabel.setText("No stats to show...");
         RefreshGrid();
     }
+    public void SelectAllExist(){
+        ArrayList<String> allExist = new ArrayList<>();
 
-    private void BulkSelectStats(boolean val){
+        for(String className : finalList){
+            try{
+                List<Critter> getCrits = Critter.getInstances(className);
+                if(getCrits.size() > 0)
+                    allExist.add(className);
+            } catch (Exception ignored) {}
+        }
+
+        SelectNoStats();
+
         for(Node s : statsShow.getChildren()){
             CheckBox get = (CheckBox)s;
-            get.setSelected(val);
-            statsIgnore.put(get.getText(), val ? null : true);
+            if(allExist.contains(get.getText())){
+                get.setSelected(true);
+                statsIgnore.put(get.getText(), null);
+            }
         }
         UpdateStats();
+
     }
     public void SelectAllStats(){
         BulkSelectStats(true);

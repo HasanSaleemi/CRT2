@@ -54,6 +54,18 @@ public class Winston extends Critter {
         if (getEnergy() > 160)
             reproduce(new Winston(), Critter.getRandomInt(8));
 
+        direction = Critter.getRandomInt(8);
+
+        if(getEnergy() > 50){
+            for (int dir = 0; dir < 8; dir++) {
+                String findFood = this.look(dir, false);
+                if(findFood != null && findFood.equals("@")) {
+                    walk(dir);
+                    return;
+                }
+            }
+        }
+
         switch (mood) {
             case "angry":
                 run(direction);
@@ -65,7 +77,6 @@ public class Winston extends Critter {
                 walk(direction);
                 break;
         }
-        direction = Critter.getRandomInt(8);
     }
     public static String runStats(java.util.List<Critter> Winstons) {
         String output = "";

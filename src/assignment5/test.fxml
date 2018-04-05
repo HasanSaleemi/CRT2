@@ -51,6 +51,7 @@
                               <Label layoutY="-20.0" text="Toggle Stats" />
                               <Button fx:id="statsSelectAll" layoutX="255.0" mnemonicParsing="false" onMouseClicked="#SelectAllStats" prefWidth="128.0" text="SELECT ALL" />
                               <Button fx:id="statsSelectNone" layoutX="255.0" layoutY="31.0" mnemonicParsing="false" onMouseClicked="#SelectNoStats" prefWidth="128.0" text="SELECT NONE" />
+                              <Button fx:id="statsSelectExist" layoutX="255.0" layoutY="62.0" mnemonicParsing="false" onMouseClicked="#SelectAllExist" prefWidth="128.0" text="SELECT EXIST" />
                            </children>
                         </Group>
                         <Group layoutX="10.0" layoutY="144.0">

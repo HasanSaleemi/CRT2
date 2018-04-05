@@ -29,8 +29,7 @@ public class Flea extends Critter {
     public void doTimeStep() {
         walk(getRandomInt(8));
 
-        if(getEnergy() > 100){
-            reproduce(new Flea(), getRandomInt(8));
+        if(getEnergy() > 50){
             reproduce(new Flea(), getRandomInt(8));
         }
     }

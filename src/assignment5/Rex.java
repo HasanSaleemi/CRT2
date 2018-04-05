@@ -30,7 +30,18 @@ public class Rex extends Critter {
     }
 
     public boolean fight(String vs) {
-        return (getRandomInt(6) < 5);
+        boolean want = (getRandomInt(6) < 5);
+
+        if(!want && getEnergy() > 50){
+            for (int dir = 0; dir < 8; dir++) {
+                String findFood = this.look(dir, false);
+                if(findFood != null && findFood.equals(this.toString())) {
+                    walk(dir);
+                }
+            }
+        }
+
+        return want;
     }
 
     @Override
