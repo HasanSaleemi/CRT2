@@ -7,12 +7,16 @@ package assignment5;
     - Movement is dependent on skin.
  */
 
+import javafx.scene.paint.Color;
+
 public class Leo extends Critter {
 
     @Override
-    public CritterShape viewShape() {
-        return CritterShape.TRIANGLE;
-    }
+    public CritterShape viewShape() { return CritterShape.TRIANGLE; }
+    @Override
+    public javafx.scene.paint.Color viewOutlineColor() { return Color.ORANGE; }
+    @Override
+    public javafx.scene.paint.Color viewColor() { return Color.LIGHTGOLDENRODYELLOW; }
 
     @Override
     public String toString() {
@@ -79,9 +83,9 @@ public class Leo extends Critter {
 
         double total=spots+stripes+colors;
         output = output.concat("" + Teds.size() + " total Leos    ");
-        output = output.concat("" + spots*100 / (total) + "% spotted   ");
-        output = output.concat("" + stripes*100 / (total) + "% striped   ");
-        output = output.concat("" + colors * 100 / (total) + "% colored   ");
+        output = output.concat("" + Math.floor(spots*100 / (total)) + "% spotted   ");
+        output = output.concat("" + Math.floor(stripes*100 / (total)) + "% striped   ");
+        output = output.concat("" + Math.floor(colors * 100 / (total)) + "% colored   ");
         return output;
     }
 }

@@ -7,14 +7,18 @@ package assignment5;
     - Always attempts to flee from Critters unless they are Algae.
  */
 
+import javafx.scene.paint.Color;
+
 import java.util.List;
 
 public class Flea extends Critter {
 
     @Override
-    public CritterShape viewShape() {
-        return CritterShape.CIRCLE;
-    }
+    public CritterShape viewShape() { return CritterShape.CIRCLE; }
+    @Override
+    public javafx.scene.paint.Color viewOutlineColor() { return Color.GRAY; }
+    @Override
+    public javafx.scene.paint.Color viewColor() { return Color.BLACK; }
 
     @Override
     public String toString(){

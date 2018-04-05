@@ -7,14 +7,18 @@ package assignment5;
     - Slow to reproduce, cannot run.
  */
 
+import javafx.scene.paint.Color;
+
 public class Rex extends Critter {
 
     private int direction;
 
     @Override
-    public CritterShape viewShape() {
-        return CritterShape.STAR;
-    }
+    public CritterShape viewShape() { return CritterShape.STAR; }
+    @Override
+    public javafx.scene.paint.Color viewOutlineColor() { return Color.YELLOW; }
+    @Override
+    public javafx.scene.paint.Color viewColor() { return Color.RED; }
 
     @Override
     public String toString() {

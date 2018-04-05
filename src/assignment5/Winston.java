@@ -6,12 +6,16 @@ package assignment5;
     - Fights more and runs when moody, fights less and walks when happy.
  */
 
+import javafx.scene.paint.Color;
+
 public class Winston extends Critter {
 
     @Override
-    public CritterShape viewShape() {
-        return CritterShape.DIAMOND;
-    }
+    public CritterShape viewShape() { return CritterShape.DIAMOND; }
+    @Override
+    public javafx.scene.paint.Color viewOutlineColor() { return Color.BLACK; }
+    @Override
+    public javafx.scene.paint.Color viewColor() { return Color.ROYALBLUE; }
 
     @Override
     public String toString() { return "2"; }
@@ -88,9 +92,9 @@ public class Winston extends Critter {
         double total=happy+sad+angry;
 
         output = output.concat("" + Winstons.size() + " total Winstons    ");
-        output = output.concat("" + happy*100 / (total) + "% happy   ");
-        output = output.concat("" + sad*100 / (total) + "% sad   ");
-        output =  output.concat("" + angry*100 / (total) + "% angry   ");
+        output = output.concat("" + Math.floor(happy*100 / (total)) + "% happy   ");
+        output = output.concat("" + Math.floor(sad*100 / (total)) + "% sad   ");
+        output =  output.concat("" + Math.floor(angry*100 / (total)) + "% angry   ");
         return output;
     }
 }
